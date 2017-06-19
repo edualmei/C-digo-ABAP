@@ -1,0 +1,62 @@
+DATA: v_convert(21).
+
+PARAMETERS: p_roma(4) TYPE n.
+
+START-OF-SELECTION.
+
+ " Verifica o primeiro digito
+ CASE p_roma(1).
+   WHEN '1'. v_convert(9) = 'm        '.
+   WHEN '2'. v_convert(9) = 'mm       '.
+   WHEN '3'. v_convert(9) = 'mmm      '.
+   WHEN '4'. v_convert(9) = 'mmmm     '.
+   WHEN '5'. v_convert(9) = 'mmmmm    '.
+   WHEN '6'. v_convert(9) = 'mmmmmm   '.
+   WHEN '7'. v_convert(9) = 'mmmmmmm  '.
+   WHEN '8'. v_convert(9) = 'mmmmmmmm '.
+   WHEN '9'. v_convert(9) = 'mmmmmmmmm'.
+ ENDCASE.
+
+ " Verifica o segundo digito
+ CASE p_roma+1(1).
+   WHEN '1'. v_convert+9(4) = 'c   '.
+   WHEN '2'. v_convert+9(4) = 'cc  '.
+   WHEN '3'. v_convert+9(4) = 'ccc '.
+   WHEN '4'. v_convert+9(4) = 'cd  '.
+   WHEN '5'. v_convert+9(4) = 'd   '.
+   WHEN '6'. v_convert+9(4) = 'dc  '.
+   WHEN '7'. v_convert+9(4) = 'dcc '.
+   WHEN '8'. v_convert+9(4) = 'dccc'.
+   WHEN '9'. v_convert+9(4) = 'dm  '.
+ ENDCASE.
+
+ " Verifica o terceiro digito
+ CASE p_roma+2(1).
+   WHEN '1'. v_convert+13(4) = 'x   '.
+   WHEN '2'. v_convert+13(4) = 'xx  '.
+   WHEN '3'. v_convert+13(4) = 'XXX '.
+   WHEN '4'. v_convert+13(4) = 'xl  '.
+   WHEN '5'. v_convert+13(4) = 'l   '.
+   WHEN '6'. v_convert+13(4) = 'lx  '.
+   WHEN '7'. v_convert+13(4) = 'lxx '.
+   WHEN '8'. v_convert+13(4) = 'lxxx'.
+   WHEN '9'. v_convert+13(4) = 'xc  '.
+ ENDCASE.
+
+ " Verifica o quinto digito
+ CASE p_roma+3(1).
+   WHEN '1'. v_convert+17(4) = 'i   '.
+   WHEN '2'. v_convert+17(4) = 'ii  '.
+   WHEN '3'. v_convert+17(4) = 'iii '.
+   WHEN '4'. v_convert+17(4) = 'iv  '.
+   WHEN '5'. v_convert+17(4) = 'v   '.
+   WHEN '6'. v_convert+17(4) = 'vi  '.
+   WHEN '7'. v_convert+17(4) = 'vii '.
+   WHEN '8'. v_convert+17(4) = 'viii'.
+   WHEN '9'. v_convert+17(4) = 'ix  '.
+ ENDCASE.
+
+ CONDENSE v_convert NO-GAPS.
+ TRANSLATE v_convert TO UPPER CASE.
+
+ WRITE v_convert.
